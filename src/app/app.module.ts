@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }    from '@angular/common/http';
+
+
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatIconModule} from '@angular/material/icon'; 
@@ -31,6 +34,7 @@ import { RolesComponent } from './roles/roles.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatSidenavModule,
     MatToolbarModule,

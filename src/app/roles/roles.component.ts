@@ -1,23 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { ApiService } from '../api.service';
+import { Role } from './role';
+
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-  roles = [
-    {id: 1, name: 'admin'},
-    {id: 2, name: 'normal'}
-  ];
+  roles = [];
   pageSize = 5;
   currentPage = 0;
   totalSize = this.roles.length;
   columnsToDisplay = ['id', 'name', 'action']
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.get_data("admin/roles.json")
+      .subscribe((data) => {
+      data != '' ? data.map(role => this.roles.push(role)) : null;
+      this.totalSize = this.roles.length;});
   }
 
   public handlePage(e: any) {

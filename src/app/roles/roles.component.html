@@ -2,7 +2,7 @@
   <div class="row mt-4 ml-1 mr-1">
     <mat-card style="width: 100%;">
       <mat-card-title>Roles List</mat-card-title>
-      <mat-card-content>
+      <mat-card-content *ngIf="roles?.length > 0">
         <table mat-table [dataSource]="roles" style="width: 100%;" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
@@ -25,7 +25,7 @@
           <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
         </table>
         
-        <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
+        <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
         </mat-paginator>
       </mat-card-content>
     </mat-card>

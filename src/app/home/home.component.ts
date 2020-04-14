@@ -9,6 +9,7 @@ import { ApiService } from '../api.service';
 export class HomeComponent implements OnInit {
   
   products = [];
+  displaySpiner = true;
 
   constructor(private api: ApiService) { }
   
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
         if(data['status'] == "ok"){
         console.log(data['results'])
           data['results'].map(product => this.products.push(product));
+          this.displaySpiner = false;
         }
       })
   }

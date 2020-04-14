@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="row mt-5 ml-1 mr-1 mb-2">
+    <div class="offset-md-4 col-md-5">
+              
+        <mat-card class="p-3">
+           <mat-card-header [style.display]="displaySpiner ? 'none' : 'block'">
+             <mat-card-title style= "width: 100%">Sign Up</mat-card-title>
+           </mat-card-header>
+           <mat-spinner [style.display]="displaySpiner ? 'block' : 'none'" class="spiner"></mat-spinner>
+           <mat-card-content [style.display]="displaySpiner ? 'none' : 'block'">
+              <form class="example-form">
+                <table class="example-full-width" style="width:100%;" cellspacing="0">
+                 <tr>
+                   <td>
+                     <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="First Name" style="width:100%;" [(ngModel)]="first_name" name="first_name" type="text" required>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="Middle Name" style="width:100%;" [(ngModel)]="middle_name" name="middle_name" type="text" required>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="Last Name" style="width:100%;" [(ngModel)]="last_name" name="last_name" type="text" required>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="Email" style="width:100%;" [(ngModel)]="email" name="email" type="email" required>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="Username" style="width:100%;" [(ngModel)]="username" name="username" type="text" required>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+                 <tr>
+                    <td>
+                      <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="Password" style="width:100%;" [(ngModel)]="password" type="password" name="password" required>
+                      </mat-form-field>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                      <mat-form-field style="width:100%;" class="example-full-width">
+                        <input matInput placeholder="Confirm Password" style="width:100%;" [(ngModel)]="confirm_password" type="password" name="confirm_password" required>
+                      </mat-form-field>
+                    </td>
+                 </tr>
+                </table>
+              </form>
+           </mat-card-content>
+           <mat-card-actions [style.display]="displaySpiner ? 'none' : 'block'">
+              <mat-chip-list>
+                <mat-chip (click)="sign_up()" color="primary">Sign Up</mat-chip>
+              </mat-chip-list>
+           </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row mt-4 ml-1 mr-1">
-    <mat-grid-list class="p-1" cols='{{ products.length }}' rowHeight="2:0.5" *ngFor='let product of products'>
+    <mat-card [style.display]="displaySpiner ? 'block' : 'none'" style="width: 100%;">
+      <mat-spinner class="spiner"></mat-spinner>
+    </mat-card>
+    <mat-grid-list class="p-1" cols='{{ products.length }}' rowHeight="2:0.5" [style.display]="displaySpiner ? 'none' : 'block'" *ngFor='let product of products'>
       <mat-card style="width: 100%;">
         <mat-card-title>{{ product.name }}</mat-card-title>
         <img mat-card-image src="http://localhost:3000/{{ product.images[0].url }}" height="200px" width="200px !important"  />

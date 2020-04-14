@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
-
+import {FormsModule} from '@angular/forms';
 
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatToolbarModule} from '@angular/material/toolbar'
@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,17 +24,22 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RolesComponent } from './roles/roles.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RolesComponent
+    RolesComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     LayoutModule,
     MatSidenavModule,
@@ -48,7 +54,8 @@ import { RolesComponent } from './roles/roles.component';
     MatPaginatorModule,
     MatInputModule,
     MatChipsModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   bootstrap: [AppComponent]
 })

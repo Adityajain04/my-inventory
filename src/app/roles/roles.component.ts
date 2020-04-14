@@ -10,6 +10,7 @@ import { Role } from './role';
 })
 export class RolesComponent implements OnInit {
   roles = [];
+  displaySpiner = true;
   pageSize = 5;
   currentPage = 0;
   totalSize = this.roles.length;
@@ -23,6 +24,7 @@ export class RolesComponent implements OnInit {
         if(data['status'] == "ok"){
           data['results'].map(role => this.roles.push(role));
           this.totalSize = this.roles.length;
+          this.displaySpiner = false;
         }
       })
   }

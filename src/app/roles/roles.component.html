@@ -2,6 +2,7 @@
   <div class="row mt-4 ml-1 mr-1">
     <mat-card style="width: 100%;">
       <mat-card-title>Roles List</mat-card-title>
+      <mat-spinner class="spiner" [style.display]="displaySpiner ? 'block' : 'none'"></mat-spinner>
       <mat-card-content *ngIf="roles?.length > 0">
         <table mat-table [dataSource]="roles" style="width: 100%;" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
           <ng-container matColumnDef="id">

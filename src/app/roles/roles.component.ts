@@ -20,8 +20,11 @@ export class RolesComponent implements OnInit {
   ngOnInit(): void {
     this.api.get_data("admin/roles.json")
       .subscribe((data) => {
-      data != '' ? data.map(role => this.roles.push(role)) : null;
-      this.totalSize = this.roles.length;});
+        if(data['status'] == "ok"){
+          data['results'].map(role => this.roles.push(role));
+          this.totalSize = this.roles.length;
+        }
+      })
   }
 
   public handlePage(e: any) {

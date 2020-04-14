@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
+  products = [];
 
-  constructor() { }
+  constructor(private api: ApiService) { }
   
   ngOnInit() {
+    this.api.get_data("")
+      .subscribe((data) => {
+        if(data['status'] == "ok"){
+        console.log(data['results'])
+          data['results'].map(product => this.products.push(product));
+        }
+      })
   }
 }

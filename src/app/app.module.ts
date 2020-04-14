@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatToolbarModule} from '@angular/material/toolbar'
@@ -41,6 +42,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     LayoutModule,
     MatSidenavModule,
     MatToolbarModule,

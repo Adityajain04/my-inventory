@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.displaySpiner = false;
@@ -20,8 +21,9 @@ export class LoginComponent implements OnInit {
   login() : void {
     if(this.username == 'admin' && this.password == 'admin'){
      // this.router.navigate(["user"]);
+     this.toastr.success("You have clicked on login.")
     }else {
-      alert("Invalid credentials");
+      this.toastr.error("Invalid credentials.")
     }
   }
 }

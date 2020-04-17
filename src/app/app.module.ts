@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatToolbarModule} from '@angular/material/toolbar'
@@ -18,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +30,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { RolesComponent } from './roles/roles.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { NormalUserComponent } from './normal-user/normal-user.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
+import { RoleDialogComponent } from './role-dialog/role-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HomeComponent,
     RolesComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    NormalUserComponent,
+    AdminUserComponent,
+    RoleDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +52,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger',
+    }),
     LayoutModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -57,7 +69,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatInputModule,
     MatChipsModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   bootstrap: [AppComponent]
 })

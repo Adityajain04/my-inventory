@@ -1,0 +1,13 @@
+<form class="example-form" [style.display]="displaySpiner ? 'none' : 'block'">
+  <mat-form-field style="width:100%;" class="example-full-width">
+    <input matInput placeholder="Name" style="width:100%;" [(ngModel)]="name" name="name" required>
+  </mat-form-field>
+</form>
+<mat-card-actions [style.display]="displaySpiner ? 'none' : 'block'">
+  <mat-chip-list>
+    <mat-chip (click)="save()" color="primary">Submit</mat-chip>
+    <mat-chip (click)="close()" color="primary">Close</mat-chip>
+  </mat-chip-list>
+</mat-card-actions>
+
+<mat-spinner [style.display]="displaySpiner ? 'block' : 'none'" class="spiner"></mat-spinner>

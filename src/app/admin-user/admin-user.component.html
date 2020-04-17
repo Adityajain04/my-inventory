@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row mt-4 ml-1 mr-1">
+    <mat-card style="width: 100%;">
+      <mat-card-title>Admin User List</mat-card-title>
+      <mat-spinner class="spiner" [style.display]="displaySpiner ? 'block' : 'none'"></mat-spinner>
+      <mat-card-content *ngIf="users?.length > 0">
+        <table mat-table [dataSource]="users" style="width: 100%;" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let user"> {{user.first_name}} {{user.middle_name}} {{user.last_name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+            <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let user">
+              <mat-chip-list>
+                <mat-chip class="text-warning" matTooltip="Add User Roles" matTooltipPosition="right">Add Roles</mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
+        
+        <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50]" [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AngularTokenService } from 'angular-token';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +19,23 @@ export class AppComponent  implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private tokenService: AngularTokenService,
+    public user: UserService
+  ) { }
+
+  ngOnInit() { }
+
+  logout() {
+    this.tokenService.signOut().subscribe(
+      res =>  {
+        console.log(res);
+        this.user.clearStorage();
+        this.router.navigate(['login']);
+      },
+      error =>    console.log(error)
+    );
+  }
 }

@@ -3,33 +3,37 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Inventory</mat-toolbar>
+    <mat-toolbar style="display: inherit;">
+      <a class="navbar-brand">Inventory</a>
+      <br />
+      <p *ngIf="user.isLogged()">{{this.user.full_name}}</p>
+    </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/home">
         <mat-icon>home</mat-icon>&nbsp;Home
       </a>
-      <a mat-list-item routerLink="/roles">
+      <a mat-list-item routerLink="/roles" *ngIf="user.isLogged() && user.is_admin">
         <mat-icon>wc</mat-icon>&nbsp;Roles
       </a>
-      <a mat-list-item [matMenuTriggerFor]="userMenu">
+      <a mat-list-item [matMenuTriggerFor]="userMenu" *ngIf="user.isLogged() && user.is_admin">
         <mat-icon>people</mat-icon>&nbsp;Users
       </a>
-      <a mat-list-item [matMenuTriggerFor]="productMenu">
+      <a mat-list-item [matMenuTriggerFor]="productMenu" *ngIf="user.isLogged() && user.is_admin">
         <mat-icon>view_comfy</mat-icon>&nbsp;Products
       </a>
-      <a mat-list-item routerLink="/home">
+      <a mat-list-item routerLink="/home" *ngIf="user.isLogged()">
         <mat-icon>shopping_cart</mat-icon>&nbsp;My Quotes
       </a>
-      <a mat-list-item routerLink="/home">
+      <a mat-list-item routerLink="/home" *ngIf="user.isLogged() && user.is_admin">
         <mat-icon>list_alt</mat-icon>&nbsp;Quotes Request
       </a>
-      <a mat-list-item routerLink="/home">
+      <a mat-list-item *ngIf="user.isLogged()" (click)="logout();">
         &nbsp;Logout
       </a>
-      <a mat-list-item routerLink="/login">
+      <a mat-list-item routerLink="/login" *ngIf="!user.isLogged()">
         &nbsp;Sign In
       </a>
-      <a mat-list-item routerLink="/sign_up">
+      <a mat-list-item routerLink="/sign_up" *ngIf="!user.isLogged()">
         &nbsp;Sign Up
       </a>
       <mat-menu #userMenu="matMenu">

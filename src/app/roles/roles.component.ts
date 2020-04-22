@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {MatTable} from "@angular/material/table";
 
 import { ApiService } from '../api.service';
+import { UserService } from '../user.service';
 import { Role } from './role';
 import {RoleDialogComponent} from '../role-dialog/role-dialog.component';
 
@@ -27,17 +29,28 @@ export class RolesComponent implements OnInit {
 
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
 
-  constructor(private api: ApiService, private toastr: ToastrService, private dialog: MatDialog) { }
+  constructor(
+    private router: Router,
+    private api: ApiService,
+    private toastr: ToastrService,
+    private dialog: MatDialog,
+    private user: UserService) { }
 
   ngOnInit(): void {
-    this.api.get_data("admin/roles.json")
-      .subscribe((data) => {
-        if(data['status'] == "ok"){
-          data['results'].map(role => this.roles.push(role));
-          this.totalSize = this.roles.length;
-          this.displaySpiner = false;
-        }
-      })
+    if(this.user.isLogged()){
+      console.log(this.user.getHeader())
+      this.api.get_data("admin/roles.json")
+        .subscribe((data) => {
+          if(data['status'] == "ok"){
+            data['results'].map(role => this.roles.push(role));
+            this.totalSize = this.roles.length;
+            this.displaySpiner = false;
+          }
+        })
+    }else{
+      this.toastr.error("You are not authorized.");
+      this.router.navigate(['home']);
+    }
   }
 
   openDialog() {

@@ -4,6 +4,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { AngularTokenModule } from 'angular-token';
 
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatToolbarModule} from '@angular/material/toolbar'
@@ -51,6 +52,33 @@ import { RoleDialogComponent } from './role-dialog/role-dialog.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    AngularTokenModule.forRoot({
+      apiBase:                    'http://localhost:3000',
+
+      signInPath:                 'auth/sign_in',
+      signInRedirect:             null,
+      signInStoredUrlStorageKey:  null,
+
+      signOutPath:                'auth/sign_out',
+      validateTokenPath:          'auth/validate_token',
+      signOutFailedValidate:      false,
+
+      registerAccountPath:        'auth',
+      deleteAccountPath:          'auth',
+      registerAccountCallback:    window.location.href,
+
+      updatePasswordPath:         'auth',
+      resetPasswordPath:          'auth/password',
+      resetPasswordCallback:      window.location.href,
+
+      oAuthBase:                  window.location.origin,
+      oAuthPaths: {
+          github:                 'auth/github'
+      },
+      oAuthCallbackPath:          'oauth_callback',
+      oAuthWindowType:            'newWindow',
+      oAuthWindowOptions:         null,
+    }),
     ToastrModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger',
@@ -73,6 +101,7 @@ import { RoleDialogComponent } from './role-dialog/role-dialog.component';
     MatTooltipModule,
     MatDialogModule
   ],
+  providers:    [ AngularTokenModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
